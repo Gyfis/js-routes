@@ -47,7 +47,7 @@ Utils =
     path.join "://"
 
   set_default_url_options: (optional_parts, options) ->
-    for part, i in optional_parts when (not options.hasOwnProperty(part) and defaults.default_url_options.part?)
+    for part, i in optional_parts when (not options.hasOwnProperty(part))
       options[part] = defaults.default_url_options[part]
 
   extract_anchor: (options) ->
@@ -125,7 +125,12 @@ Utils =
     # set trailing_slash
     url = url.replace(/(.*?)[\/]?$/, "$1/") if trailing_slash is true
     # set additional url params
-    if (url_params = @serialize(parameters)).length
+    real_parameters = @clone(parameters) or {}
+
+    for key in parameters when parameters[key]?
+      real_parameters[key] = parameters[key]
+
+    if (url_params = @serialize(real_parameters)).length
       url += "?#{url_params}"
     # set anchor
     url += anchor
