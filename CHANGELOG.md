@@ -5,6 +5,10 @@
 * URL escape routes.rb url to fix bad URI(is not URI?) error [#150](https://github.com/railsware/js-routes/pull/150)
 * Fix for rails 5 - test rails-edge on travis allowing failure [#151](https://github.com/railsware/js-routes/pull/151)
 
+## v1.0.2
+
+* Remove optional params if no was value provided
+
 ## v1.0.1
 
 * Support sprockets-3
